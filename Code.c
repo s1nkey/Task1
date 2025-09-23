@@ -39,14 +39,12 @@ int main(void)
 
 double defA(double x, double y, double z)
 {
-	double a = (double)pow(x * x + y, 0.5) - y * y * ((x + z) / x);
-	return a;
+	return (double)pow(x * x + y, 0.5) - y * y * ((x + z) / x);
 }
 
 double defB(double x, double y, double z)
 {
-	double b = x * x * x - (x / (double)pow(z * z + y * y, 0.5));
-	return b;
+	return x * x * x - (x / (double)pow(z * z + y * y, 0.5));
 }
 
 
