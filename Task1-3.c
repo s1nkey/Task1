@@ -20,8 +20,8 @@ int main(void)
 	setlocale(LC_ALL, "");
 
 	const double Time = 1200;
-	double I;
-	double U;
+	double I = 0;
+	double U = 0;
 
 	printf("Введите силу тока в цепи: ");
 	scanf_s("%lf", &I);
