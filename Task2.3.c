@@ -95,7 +95,7 @@ void checkValue(const double input)
 
 const double defTask(const double timeA, const double timeB, const double timeC, const double speedA, const double speedB, const double speedC)
 {
-    const double half_allPath = (defPath(timeA, speedA) + defPath(timeB, speedB) + defPath(timeC, speedC) / 2.0);
+    const double half_allPath = ((defPath(timeA, speedA) + defPath(timeB, speedB) + defPath(timeC, speedC)) / 2.0);
 
     if (half_allPath - defPath(timeA, speedA) > 0)
     {
