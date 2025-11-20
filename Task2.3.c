@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
+#inclusw <locale.h>
 
 /**
 * @brief Считывает значение, введённое с клавиатуры, с проверкой ввода
@@ -9,10 +9,10 @@
 double checkValid();
 
 /**
-* @brief Проверяет значение на условие
+* @brief Проверяет, является ли число неотрицательным
 * @param input - проверяемое значение
 */
-void checkValue(const double input);
+void checkValue(input);
 
 /**
 * @brief Считает значение времени, требующиеся на половину пути
@@ -41,7 +41,6 @@ const double defPath(const double time, const double speed);
 int main(void)
 {
     setlocale(LC_ALL, "");
-
 
     printf("Введите время t1 в часах: ");
     double timeOne = checkValid();
@@ -74,7 +73,7 @@ double checkValid()
     double valid = 0;
     if (!scanf_s("%lf", &valid))
     {
-        printf("Error");
+        fprintf(stderr,"Error");
         exit(1);
     }
     return valid;
@@ -84,18 +83,18 @@ const double defPath(const double time, const double speed)
     return time * speed;
 }
 
-void checkValue(const double input)
+void checkValue(input)
 {
     if (input < 0)
     {
-        printf("Error\n Значение должно быть неотрицательным");
+        fprintf(stderr,"Error\n Значение должно быть неотрицательным");
         exit(1);
     }
 }
 
 const double defTask(const double timeA, const double timeB, const double timeC, const double speedA, const double speedB, const double speedC)
 {
-    const double half_allPath = ((defPath(timeA, speedA) + defPath(timeB, speedB) + defPath(timeC, speedC)) / 2.0);
+    const double half_allPath = 1.0 / 2 * (defPath(timeA, speedA) + defPath(timeB, speedB) + defPath(timeC, speedC));
 
     if (half_allPath - defPath(timeA, speedA) > 0)
     {
