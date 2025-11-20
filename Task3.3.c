@@ -3,6 +3,7 @@
 #include <math.h>
 #include <stdbool.h>
 #include <float.h>
+#include <locale.h>
 
 /**
 * @brief Считывает значение введённое с клавиатуры, с проверкой ввода
@@ -61,7 +62,7 @@ void checkPlus(const double input);
 
 int main(void)
 {
-    system("chcp 1251");
+    setlocale(LC_ALL, "");
     system("CLS");
 
     printf("Введите начало промежутка: ");
