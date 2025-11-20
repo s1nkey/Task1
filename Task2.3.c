@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#inclusw <locale.h>
+#include <locale.h>
 
 /**
 * @brief Считывает значение, введённое с клавиатуры, с проверкой ввода
