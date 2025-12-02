@@ -37,7 +37,7 @@ double getSumE(const double e);
  */
 double getRecurent(const int i);
 
-/*/
+/**
  * @brief проверяет, что число положительное
  * @param value - проверяемое значение
  */
@@ -70,7 +70,7 @@ int getValue()
     int value = 0;
     if (!scanf_s("%d", &value))
     {
-        printf("Error\n");
+        fprintf(stderr, "Error\n");
         exit(1);
     }
     return value;
@@ -81,7 +81,7 @@ double getDouble()
     double value = 0;
     if (scanf_s("%lf", &value) == 0)
     {
-        printf("Error\n");
+        fprintf(stderr, "Error\n");
         exit(1);
     }
     return value;
@@ -108,7 +108,7 @@ void checkPositive(const double value)
 {
     if (value <= 0)
     {
-        printf("Error\n");
+        fprintf(stderr, "Error\n");
         exit(1);
     }
 }
