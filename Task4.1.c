@@ -5,12 +5,6 @@
 #include <stdbool.h>
 
 /**
-* @brief считывает значение введённое с клавиатуры, с проверкой ввода
-* @return число типа size_t
-*/
-const long int get_sizearray(void);
-
-/**
 * @brief проверяет корректно ли выделена память под массив
 * @param arr - проверяемый массив
 */
@@ -93,6 +87,12 @@ void def_task_two(const int* arr, const size_t rows);
 void def_task_three(int* arr, const size_t rows);
 
 /**
+* @brief Проверяет что переменная не меньше единицы
+* @param input - значение проверяемой переменной
+*/
+void checkValueForN(const int input);
+
+/**
 * @param CHOISE_ONE - выбор ручного заполнения
 * @param CHOISE_TWO - выбор заполнения случайными числами
 * @param TASK_ONE - выбор выполнения 1 задания
@@ -110,8 +110,9 @@ int main(void)
 {
     setlocale(LC_ALL, "");
 
-    printf("Введите количество строк массива: ");
-    size_t rows = (size_t)get_sizearray();
+    printf("Введите количество элементов массива: ");
+    size_t rows = (size_t)get_int();
+    checkValueForN(rows);
 
     int* main_array = (int*)calloc(rows, sizeof(int));
     check_pointer(main_array);
@@ -139,10 +140,11 @@ int main(void)
         break;
 
     default:
-        fprintf(stderr, "Error 0\n");
+        fprintf(stderr, "Error Ошибка выбора\n");
         free(main_array);
         exit(1);
     }
+
 
     system("CLS");
     int* copy_array = get_copyarray(main_array, rows);
@@ -168,7 +170,7 @@ int main(void)
         break;
 
     default:
-        fprintf(stderr, "Error 0\n");
+        fprintf(stderr, "Error Ошибка выбора\n");
         free(main_array);
         free(copy_array);
         exit(1);
@@ -179,28 +181,11 @@ int main(void)
     return 0;
 }
 
-const long int get_sizearray(void)
-{
-    long int output = 0;
-    if (!scanf_s("%ld", &output))
-    {
-        fprintf(stderr, "Error 1\n");
-        exit(1);
-    }
-    if (output < 1)
-    {
-        fprintf(stderr, "Error 2\n");
-        exit(1);
-    }
-
-    return output;
-}
-
 void check_pointer(const int* arr)
 {
     if (arr == NULL)
     {
-        fprintf(stderr, "Error 3\n");
+        fprintf(stderr, "Error Ошибка выделения памяти\n");
         exit(1);
     }
 }
@@ -210,7 +195,7 @@ int get_int(void)
     int output = 0;
     if (!scanf_s("%d", &output))
     {
-        fprintf(stderr, "Error 4\n");
+        fprintf(stderr, "Error Ошибка ввода\n");
         exit(1);
     }
     return output;
@@ -220,7 +205,7 @@ void check_min_max(const int min, const int max)
 {
     if (min >= max)
     {
-        fprintf(stderr, "Error 5\n");
+        fprintf(stderr, "Error Ошибка ввода промежутка\n");
         exit(1);
     }
 }
@@ -254,7 +239,7 @@ void check_int(const int input, const int min, const int max)
 {
     if (input<min || input>max)
     {
-        fprintf(stderr, "Error 6\n");
+        fprintf(stderr, "Error Ошибка ввода числа, оно должно лежать в указаном промежутке\n");
         exit(1);
     }
 }
@@ -290,16 +275,18 @@ int* def_task_one(int* arr, const size_t rows)
     check_pointer(arr);
 
     printf("\nЗадайте число k: ");
-    size_t k = (size_t)get_sizearray();
+    size_t k = get_int();
+    checkValueForN(k);
+
     if (k > rows)
     {
-        fprintf(stderr, "Error 7\n");
+        fprintf(stderr, "Error Число должно быть меньше, чем элементов массива\n");
         exit(1);
     }
 
     for (size_t i = rows - k; i < rows; i++)
     {
-        arr[i] = (-1) * arr[i];
+        arr[i] = -arr[i];
     }
 
     return arr;
@@ -341,6 +328,7 @@ void def_task_three(const int* arr, const size_t rows)
         }
     }
 
+
     if (check == 0)
     {
         printf("\nПар соседних элементов, с суммой, равной заданному числу нет\n");
@@ -348,5 +336,15 @@ void def_task_three(const int* arr, const size_t rows)
     else
     {
         printf("\nЕсть пара соседних элементов, с суммой, равной заданному числу\n");
+    }
+}
+
+
+void checkValueForN(const int input)
+{
+    if (input < 1)
+    {
+        fprintf(stderr, "Error\nЧисло должно быть не меньше 1");
+        exit(1);
     }
 }
